@@ -1,13 +1,13 @@
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
 import { FaTrash } from "react-icons/fa";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Fav = function () {
   const fav = useSelector((currState) => {
     return currState.fav.content;
   });
-  //   const dispatch = useDispatch();
-  console.log(fav);
+  const dispatch = useDispatch();
   return (
     <Container fluid>
       <Row className="justify-content-center">
@@ -17,9 +17,20 @@ const Fav = function () {
             <Col xs={12} key={i}>
               <Card>
                 <Card.Body>
-                  N.{i + 1} - {comp}
+                  N.{i + 1} -{" "}
+                  <Link className="nav-link d-inline" to={`/${comp}`}>
+                    {comp}
+                  </Link>
                 </Card.Body>
-                <Button variant="danger">
+                <Button
+                  variant="danger"
+                  onClick={() => {
+                    dispatch({
+                      type: "DELETE_FROM_FAV",
+                      payload: comp,
+                    });
+                  }}
+                >
                   <FaTrash className="me-3" />
                   Rimuovi dai preferiti
                 </Button>

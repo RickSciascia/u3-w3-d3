@@ -7,7 +7,9 @@ function NavBar() {
   return (
     <Navbar expand="md" className="bg-body-tertiary">
       <Container fluid>
-        <Navbar.Brand href="#home">Remote-Jobs FINDER</Navbar.Brand>
+        <Link className="navbar-brand" to="/">
+          Remote-Jobs FINDER
+        </Link>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
